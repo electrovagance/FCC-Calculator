@@ -2,9 +2,9 @@ import React from 'react';
 
 function ClearInput() {
     return(
-        <div id="clear">
-    
-        </div>
+        <button id="clear">
+            AC
+        </button>
     )
 }
 

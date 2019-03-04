@@ -1,10 +1,14 @@
 import React from 'react';
 
+const operators = ['/', 'x', '-', '+'];
+
 function Operators() {
     return(
-        <div id="operators">
-    
-        </div>
+        <React.Fragment id="numbers">
+            {operators.map((number, index) => (
+                <button key={index}>{number}</button>
+            ))}
+        </React.Fragment>
     )
 }
 
