@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { Component } from 'react';
 import Display from './components/Display';
 import ClearInput from './components/ClearInput';
 import Operators from './components/Operators';
@@ -7,40 +7,49 @@ import Decimal from './components/Decimal';
 import Calculate from './components/Calculate';
 import './App.css';
 
-function App() {
-  // declare state here
-  const [inputArr, setInputArr] = useState([5, '+', 6]);
+const numRegEx = /\d/;
+const operatorRegEx = /x+-\\/ig;
+
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      inputArr: ['0']
+    }
+  }
 
   //function for checking for valid inpud
-  const input = () => {
-    console.log(test);
+  input = (event) => {
+    const input = event.target.innerHTML;
+    if (numRegEx.test(parseInt(input))) console.log(input);
+    else if (operatorRegEx.test(input)) console.log('t')
   }
 
-  // function for listening to input
-  const handleInput = () => {
-    useEffect(() => {
-      document.getElementById('buttons').document.addEventListener('onclick', input);
-
-      return () => {
-        document.removeEventListener(input)
-      }
-    })
+  componentDidMount = () => {
+    document.getElementById('buttons').addEventListener('click', this.input)
   }
-  
+
+  componentWillUnmount = () => {
+    document.removeEventListener(this.input)
+  }
+
+  render() {
     return (
-    <div className="App">
-      <div id="calculator">
-        <Display input={inputArr}/>
-        <section id="buttons">
-          <ClearInput />
-          <Operators />
-          <Numbers />
-          <Decimal />
-          <Calculate />
-        </section>
+      <div className="App" >
+        <div id="calculator">
+          <Display input={this.state.inputArr} />
+          <section id="buttons">
+            <ClearInput />
+            <Operators />
+            <Numbers />
+            <Decimal />
+            <Calculate />
+          </section>
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
+
 };
 
 export default App;
