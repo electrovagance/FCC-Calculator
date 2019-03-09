@@ -28,9 +28,12 @@ body {
 }
 
 #display {
+  min-height: 200px;
   text-align: right;
   background: var(--display-color);
   padding: 0 30px;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 #buttons {

@@ -5,7 +5,8 @@ function Display(props) {
         <div id="display">
             {props.input.map((i, index) => (
                 <span key={index}>{i}</span> 
-            ))}
+                )
+            )}
         </div>
                 
     )
