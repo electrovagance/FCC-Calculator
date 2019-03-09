@@ -21,13 +21,19 @@ class App extends Component {
     }
   }
 
-  // function for checking for valid input and calling corresponding function
+  // function for checking  valid input and calling corresponding function
   input = (event) => {
     // save input in input variable
     const input = event.target.innerHTML;
+    console.log(input);
 
-    if (numRegEx.test(parseInt(input))) this.addNum(input);
+    if (input === 'AC') this.clearInput();
+    else if (numRegEx.test(parseInt(input))) this.addNum(input);
     else if (input.match(operatorRegEx)) this.addOperator(input);
+  }
+
+  clearInput = () => {
+    this.setState({ inputArr: ['0'] })
   }
 
   // function which adds entered numbers into state
