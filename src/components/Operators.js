@@ -4,11 +4,14 @@ const operators = ['/', 'x', '-', '+'];
 
 function Operators() {
     return(
-        <React.Fragment id="numbers">
-            {operators.map((number, index) => (
-                <button key={index}>{number}</button>
-            ))}
-        </React.Fragment>
+        <div id="operators">
+            <React.Fragment>
+                {operators.map((number, index) => (
+                    <button key={index}>{number}</button>
+                ))}
+            </React.Fragment>
+        </div>
+        
     )
 }
 
