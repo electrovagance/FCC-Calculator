@@ -27,7 +27,7 @@ class App extends Component {
     const input = event.target.innerHTML;
     console.log(input);
 
-    if (event.target.nodeName == 'BUTTON') {
+    if (event.target.nodeName === 'BUTTON') {
       if (input === 'AC') this.clearInput();
       else if (numRegEx.test(parseInt(input))) this.addNum(input);
       else if (input.match(operatorRegEx)) this.addOperator(input);
@@ -40,7 +40,6 @@ class App extends Component {
 
   // function which adds entered numbers into state
   addNum = (num) => {
-    // console.log(num)
     const tempArr = this.state.inputArr;
     let currentPosition = this.state.inputArr.length - 1;
     const lastItem = tempArr.slice(-1)[0];
@@ -59,6 +58,8 @@ class App extends Component {
       // save new input in state
       this.setState({ inputArr: tempArr })
     }
+    
+    this.scrollToBottom();
   }
 
   addOperator = (operator) => {
@@ -73,14 +74,22 @@ class App extends Component {
       console.log(tempArr);
       this.setState({ inputArr: tempArr })
     }
+
+    this.scrollToBottom();
+  }
+
+  scrollToBottom = () => {
+    let display = document.getElementById('display');
+    display.scrollTop = display.scrollHeight;
   }
 
   componentDidMount = () => {
-    document.getElementById('buttons').addEventListener('click', this.input)
+    document.getElementById('buttons').addEventListener('click', this.input);
   }
 
   componentWillUnmount = () => {
-    document.removeEventListener(this.input)
+    document.removeEventListener(this.input);
+    document.removeEventListener(this.display);
   }
 
   render() {

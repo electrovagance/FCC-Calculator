@@ -28,12 +28,19 @@ body {
 }
 
 #display {
-  min-height: 200px;
+  max-height: 200px;
   text-align: right;
   background: var(--display-color);
   padding: 0 30px;
-  white-space: nowrap;
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+
+#display p {
+  display: inline-block;
   overflow: hidden;
+  margin: 0;
+  text-overflow: ellipsis;
 }
 
 #buttons {

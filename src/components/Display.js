@@ -4,7 +4,7 @@ function Display(props) {
     return(
         <div id="display">
             {props.input.map((i, index) => (
-                <span key={index}>{i}</span> 
+                <p key={index}>{i}</p> 
                 )
             )}
         </div>
