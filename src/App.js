@@ -52,6 +52,14 @@ class App extends Component {
       tempArr[currentPosition + 1] = '0.';
       this.setState({ inputArr: tempArr })
     }
+    else if (lastItem.indexOf('.') !== -1) {
+      return
+    }
+    else {
+      tempArr[currentPosition] = lastItem + '.';
+      this.setState({ inputArr: tempArr })
+    }
+    this.scrollToBottom();
   }
 
   // function which adds entered numbers into state
