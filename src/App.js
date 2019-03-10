@@ -84,7 +84,6 @@ class App extends Component {
     // check if result has a decimal number and formats output accordingly
     }
     if (Number.isInteger(result)) {
-      console.log('first func, num is' + result)
       result = result.toString();
       newArr[0] = result;
     } 

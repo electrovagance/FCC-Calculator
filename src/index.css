@@ -2,6 +2,8 @@
   --display-color: #f5f6f8;
   --border-color: #edeef1;
   --button-text-color: #707070;
+  --button-operator-color: #59a7e5;
+  --button-clear-color: #e77e61;
 }
 
 body {
@@ -19,12 +21,45 @@ body {
   margin: 1em;
 }
 
+
+/*  Button Style Reset 
+    Button Pal: https://codepen.io/andybelldesign/pen/Vxpjvo
+    https://css-tricks.com/overriding-default-button-styles/
+*/
+button {
+  border: 0.5px solid var(--border-color);
+  color: var(--button-text-color);
+  font-size: 50px;
+  display: inline-block;
+  background-color: white;
+  /* border: none; */
+  margin: 0;
+  text-decoration: none;
+  cursor: pointer;
+  text-align: center;
+  transition: background 250ms ease-in-out, 
+              transform 150ms ease;
+}
+
+button:hover,
+button:focus {
+  background: var(--display-color);
+}
+
+button:focus {
+  outline-offset: -4px;
+}
+
+button:active {
+  transform: scale(0.99);
+}
+
 #calculator {
   margin: 0 auto;
   border: 1px solid var(--border-color);
   min-width: 250px;
-  max-width: 300px;
   display: grid;
+  max-width: 600px;
 }
 
 #display {
@@ -45,37 +80,43 @@ body {
 }
 
 #buttons {
-  /* display: grid; */
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(5, 1fr);
+  display: grid;
+  grid-template-areas: 
+  "ACButton ACButton"
+  "numberButton numberButton"
+  "operators operators"
+  "decimalButton equalButton";
+  grid-template-columns: repeat(2, 1fr);
 }
 
-/*  Button Style Reset 
-    Button Pal: https://codepen.io/andybelldesign/pen/Vxpjvo
-    https://css-tricks.com/overriding-default-button-styles/
-*/
-button {
-  font-size: 50px;
-  display: inline-block;
-  background-color: white;
-  border: none;
-  margin: 0;
-  text-decoration: none;
-  cursor: pointer;
-  text-align: center;
-  transition: background 250ms ease-in-out, 
-              transform 150ms ease;
+#clear {
+  grid-area: ACButton;
+  color: var(--button-clear-color);
 }
 
-button:hover,
-button:focus {
-  background: #0053ba;
+#decimal {
+  grid-area: decimalButton;
 }
 
-button:focus {
-  outline-offset: -4px;
+#equals {
+  grid-area: equalButton;
+  color: white;
+  background-color: var(--button-operator-color);
 }
 
-button:active {
-  transform: scale(0.99);
+#operators {
+  grid-area: operators;
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: repeat(4,1fr);
+}
+
+#operators > button {
+    color: var(--button-operator-color);
+}
+
+#numbers {
+  grid-area: numberButton;
+  display: grid;
+  grid-template-columns: repeat(5,1fr);
 }
