@@ -28,6 +28,7 @@ body {
 }
 
 #display {
+  min-height: 200px;
   max-height: 200px;
   text-align: right;
   background: var(--display-color);

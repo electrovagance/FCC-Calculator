@@ -11,7 +11,6 @@ import './App.css';
 const numRegEx = /\d/;
 // regEx for all other buttons (operators, clear, and decimal)
 const operatorRegEx = /x|\+|\/|-/ig;
-// const operatorRegEx = /x|\+|\/|-|=|.|AC/ig;
 
 class App extends Component {
   constructor(props) {
@@ -31,11 +30,28 @@ class App extends Component {
       if (input === 'AC') this.clearInput();
       else if (numRegEx.test(parseInt(input))) this.addNum(input);
       else if (input.match(operatorRegEx)) this.addOperator(input);
+      else if (input === '.') this.addDecimal();
     }
   }
 
   clearInput = () => {
     this.setState({ inputArr: ['0'] })
+  }
+
+  addDecimal = () => {
+    let tempArr = this.state.inputArr;
+    let currentPosition = this.state.inputArr.length - 1;
+    const lastItem = tempArr.slice(-1)[0];
+    const currentNum = tempArr[currentPosition];
+
+    if (this.state.inputArr.length === 1 && this.state.inputArr[0] === '0') {
+      tempArr = ['0.']
+      this.setState({ inputArr: tempArr })
+    }
+    else if (lastItem.match(operatorRegEx)) {
+      tempArr[currentPosition + 1] = '0.';
+      this.setState({ inputArr: tempArr })
+    }
   }
 
   // function which adds entered numbers into state
@@ -89,7 +105,6 @@ class App extends Component {
 
   componentWillUnmount = () => {
     document.removeEventListener(this.input);
-    document.removeEventListener(this.display);
   }
 
   render() {
