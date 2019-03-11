@@ -153,6 +153,10 @@ class App extends Component {
     if (this.state.inputArr[0] === '0') return;
     else if (lastItem.match(operatorRegEx)) return;
     else {
+      if (lastItem === '0.') {
+        tempArr.pop();
+        tempArr.push('0');
+      }
       tempArr.push(operator);
       this.setState({ inputArr: tempArr })
     }
