@@ -10,7 +10,7 @@ import './App.css';
 // regEx for numbers
 const numRegEx = /\d/;
 // regEx for all other buttons (operators, clear, and decimal)
-const operatorRegEx = /x|\+|\/|-/ig;
+const operatorRegEx = /x|\+|÷|-/ig;
 
 class App extends Component {
   constructor(props) {
@@ -41,7 +41,7 @@ class App extends Component {
     let result = 0;
     let firstNum;
     let secondNum;
-    let multidivregex = /x|\//ig;
+    let multidivregex = /x|÷/ig;
     let testForMultiplicatonOrDivision;
 
     // loop through array and do all multiplicatons and divisions first
@@ -50,9 +50,9 @@ class App extends Component {
         firstNum = parseFloat(tempArr[i-1]);
         secondNum = parseFloat(tempArr[i+1]);
 
-        if (tempArr[i] === '/' || tempArr[i] === 'x') {
+        if (tempArr[i] === '÷' || tempArr[i] === 'x') {
           // get result
-          if (tempArr[i] === '/') result = firstNum / secondNum;
+          if (tempArr[i] === '÷') result = firstNum / secondNum;
           else if (tempArr[i] === 'x') result = firstNum * secondNum;
 
           // remove calculated numbers in array and save result instead
@@ -88,9 +88,7 @@ class App extends Component {
       newArr[0] = result;
     } 
     else {
-      console.log(result)
-      result = parseFloat(result.toFixed(3));
-      console.log(result)
+      result = parseFloat(result.toFixed(4));
       newArr[0] = result.toString();
     }
     this.setState({ inputArr: newArr })

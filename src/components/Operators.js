@@ -1,6 +1,6 @@
 import React from 'react';
 
-const operators = ['/', 'x', '-', '+'];
+const operators = ['÷', 'x', '-', '+'];
 
 function Operators() {
     return(
