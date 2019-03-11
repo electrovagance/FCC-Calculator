@@ -151,7 +151,11 @@ class App extends Component {
     const lastItem = tempArr.slice(-1)[0];
 
     if (this.state.inputArr[0] === '0') return;
-    else if (lastItem.match(operatorRegEx)) return;
+    else if (lastItem.match(operatorRegEx)) {
+      tempArr.pop();
+      tempArr.push(operator);
+      this.setState({ inputArr: tempArr })
+    }
     else {
       if (lastItem === '0.') {
         tempArr.pop();
